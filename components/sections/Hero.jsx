@@ -7,6 +7,7 @@ import MaskedText from "@/components/ui/MaskedText";
 import ImageWithFallback from "@/components/ui/ImageWithFallback";
 import Clock from "@/components/ui/Clock";
 import { heroImage, hero, navLinks } from "@/data/content";
+import { useNav } from "@/lib/useNav";
 
 export default function Hero() {
   const { ready, setMenuOpen } = useApp();
@@ -36,10 +37,8 @@ export default function Hero() {
     return () => ctx.revert();
   }, []);
 
-  const go = (e, href) => {
-    e.preventDefault();
-    scrollToTarget(href);
-  };
+const go = useNav();
+
 
   return (
     <div ref={rootRef} id="top" data-theme="dark" className="sticky top-0 z-0 h-[100svh] min-h-[560px] w-full overflow-hidden bg-night text-white">

@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
-import { scrollToTarget } from "@/lib/scrollTo";
+import { useNav } from "@/lib/useNav";
 import MaskedText from "@/components/ui/MaskedText";
 import { footer } from "@/data/content";
 
@@ -79,11 +79,7 @@ export default function Footer() {
     setEmail("");
   };
 
-  const go = (e, href) => {
-    if (!href.startsWith("#") || href === "#") return;
-    e.preventDefault();
-    scrollToTarget(href);
-  };
+ const go = useNav();
 
   return (
     <footer data-theme="dark" className={`page-x bg-black pb-0 pt-[10vw] md:pt-[3.5vw] ${INK}`}>

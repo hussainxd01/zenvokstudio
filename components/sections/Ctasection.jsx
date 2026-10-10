@@ -1,5 +1,6 @@
 import MaskedText from "@/components/ui/MaskedText";
 import { cta } from "@/data/content";
+import Link from "next/link";
 
 const ACCENT = "#ff6a57"; // brightened version of the site's reds; change here only
 
@@ -15,8 +16,8 @@ function ArrowIcon() {
 function TalkButton({ label, href }) {
   const ease = "transition-transform duration-500 ease-[cubic-bezier(0.7,0,0.2,1)]";
   return (
-    <a
-      href={href}
+    <Link
+      href={"/contact"}
       className="group relative inline-flex items-center gap-3 pb-2.5 text-[clamp(12px,0.95vw,16px)] uppercase leading-none tracking-[0.12em] text-white"
     >
       {/* rolling label */}
@@ -47,7 +48,7 @@ function TalkButton({ label, href }) {
         className="absolute bottom-0 left-0 h-px w-full origin-left scale-x-0 transition-transform duration-700 ease-[cubic-bezier(0.7,0,0.2,1)] group-hover:scale-x-100"
         style={{ backgroundColor: ACCENT }}
       />
-    </a>
+    </Link>
   );
 }
 

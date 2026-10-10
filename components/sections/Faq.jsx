@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import MaskedText from "@/components/ui/MaskedText";
 import { faq } from "@/data/content";
+import Link from "next/link";
 
 function Item({ q, a, open, onToggle }) {
   const panelRef = useRef(null);
@@ -55,12 +56,12 @@ export default function Faq() {
 
       <div className="grid-12 mt-[10vw] gap-y-10 md:mt-[6vw]">
         <div className="col-span-12 md:col-span-4">
-          <a
+          <Link
             href={faq.cta.href}
             className="inline-block border border-black/80 px-[clamp(24px,2.4vw,40px)] py-[clamp(10px,0.9vw,16px)] text-small transition-colors duration-300 hover:bg-black hover:text-white"
           >
             {faq.cta.label}
-          </a>
+          </Link>
         </div>
         <div className="col-span-12 md:col-span-7 md:col-start-6">
           {faq.items.map((it, i) => (

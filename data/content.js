@@ -12,7 +12,7 @@ export const navLinks = [
 export const menuLinks = [{ label: "Home", href: "#top" }, ...navLinks];
 
 export const socials = [
-  { label: "LinkedIn", href: "#" },
+  { label: "WhatsApp", href: "#" },
   { label: "Instagram", href: "#" },
   { label: "Twitter", href: "#" },
 ];
@@ -98,7 +98,7 @@ export const footer = {
   ],
   socials: [
     { label: "Instagram", href: "#" }, // TODO: real URLs
-    { label: "LinkedIn", href: "#" },
+    { label: "WhatsApp", href: "#" },
   ],
   location: "India – Kolkata",
   terms: { label: "Terms of use", href: "#" },

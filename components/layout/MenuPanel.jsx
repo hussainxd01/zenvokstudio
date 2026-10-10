@@ -2,13 +2,16 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 import { lenisStore } from "@/lib/lenis";
-import { scrollToTarget } from "@/lib/scrollTo";
+import { usePathname } from "next/navigation";
+import { useNav } from "@/lib/useNav";
 import { useApp } from "@/components/providers/AppContext";
 import { menuLinks, projects, socials } from "@/data/content";
 
 /** Right-hand navigation sidebar with masked-text links. */
 export default function MenuPanel() {
   const { menuOpen, setMenuOpen } = useApp();
+  const nav = useNav();
+  const pathname = usePathname();
   const rootRef = useRef(null);
   const panelRef = useRef(null);
   const overlayRef = useRef(null);
@@ -56,7 +59,7 @@ export default function MenuPanel() {
   const go = (e, href) => {
     e.preventDefault();
     setMenuOpen(false);
-    setTimeout(() => scrollToTarget(href), 450);
+    setTimeout(() => nav(null, href), 450);
   };
 
   return (
@@ -90,15 +93,14 @@ export default function MenuPanel() {
             </button>
           </div>
           <ul className="mt-6">
-            {menuLinks.map((l, i) => (
+            {menuLinks.map((l) => (
               <li key={l.label} className="overflow-hidden">
                 <a
                   href={l.href}
                   onClick={(e) => go(e, l.href)}
                   data-menu-word
-                  className={`block w-fit text-[clamp(34px,3.6vw,56px)] leading-[1.05] tracking-tight decoration-1 underline-offset-4 hover:underline ${
-                    i === 0 ? "text-black/45" : "text-black"
-                  }`}
+                  className={`block w-fit text-[clamp(34px,3.6vw,56px)] leading-[1.05] tracking-tight decoration-1 underline-offset-4 hover:underline ${(l.href === "/contact" ? pathname === "/contact" : l.href === "#top" && pathname === "/") ? "text-black/45" : "text-black"
+                    }`}
                 >
                   {l.label}
                 </a>
