@@ -1,6 +1,6 @@
 // All copy + asset paths live here. Edit content here, not in components.
 
-export const heroImage = "/Hero.png";
+export const heroImage = "/images/Hero.jpg";
 
 export const navLinks = [
   { label: "Works", href: "#works" },
@@ -38,9 +38,9 @@ export const services = {
   cta: { label: "View all Works", href: "#works" },
   // `src` can be an image, gif or video (.mp4/.webm). Missing file -> placeholder.
   rows: [
-    { before: "MOTI", after: "N GRAPHICS", capsule: { src: "/capsule-motion.png", placeholder: "from-amber-300 to-orange-500" } },
-    { before: "WEB & DIGITAL PR", after: "DUCT", capsule: { src: "/capsule-product.png", placeholder: "from-stone-400 to-stone-700" } },
-    { before: "BR", after: "ND IDENTITY", capsule: { src: "/capsule-brand.png", placeholder: "from-sky-200 via-slate-400 to-slate-700" } },
+    { before: "STR", after: "TEGY & DESIGN", capsule: { src: "/images/motion.webm", placeholder: "from-amber-300 to-orange-500" } },
+    { before: "WEB & DIGITAL PR", after: "DUCT", capsule: { src: "/images/motion-2.webm", placeholder: "from-stone-400 to-stone-700" } },
+    { before: "OPTIMIZA", after: "TION & SUPPORT", capsule: { src: "/images/motion-3.webm", placeholder: "from-sky-200 via-slate-400 to-slate-700" } },
   ],
 };
 
@@ -65,9 +65,9 @@ export const glance = {
   link: { label: "LEARN MORE", href: "#" },
   slides: [
     { type: "stat", text: "Built for brands ready to move forward.", value: "5+", label: "digital experiences" },
-    { type: "image", src: "/slider-1.png", lines: ["Fashion Brand", "Retail", "eCommerce", "Portfolio", "Agency"] },
+    { type: "image", src: "/images/slider-1.png", lines: ["Fashion Brand", "Retail", "eCommerce", "Portfolio", "Agency"] },
     { type: "quote", text: quote, value: "2", label: "selected projects" },
-    { type: "image", src: "/slider-2.png", lines: ["eCommerce", "Brand Websites", "Digital Experiences"] },
+    { type: "image", src: "/images/slider-2.jpg", lines: ["eCommerce", "Brand Websites", "Digital Experiences"] },
     { type: "quote", text: quote, value: "1", label: "selected projects" },
   ],
 };
@@ -75,7 +75,7 @@ export const glance = {
 // TODO: replace the placeholder answers with your real ones.
 export const faq = {
   title: "Got a question?\nWe answer\nit here",
-  cta: { label: "Get in touch", href: "mailto:hello@zenvok.com" },
+  cta: { label: "Get in touch ↗", href: "mailto:hello@zenvok.com" },
   items: [
     { q: "How much does a website cost with ZENVOK® Studio?", a: "Every project is scoped around your goals, pages and features, so pricing varies. Send us a few details and we'll come back with a clear quote." },
     { q: "How long does it take to build a website with ZENVOK® Studio?", a: "Timelines depend on scope. A focused marketing site is quicker than a full e-commerce build, and we'll agree on dates with you before we start." },
@@ -103,4 +103,11 @@ export const footer = {
   location: "India – Kolkata",
   terms: { label: "Terms of use", href: "#" },
   copyright: "©2026",
+};
+
+export const cta = {
+  lines: { first: "Got a", accent: "project", rest: "in mind?" },
+  sub: "Let’s turn your idea into something\nthat drives real results.",
+  note: "From first thought to final launch, we’re ready when you are.",
+  button: { label: "Let's talk", href: "mailto:hello@zenvok.com" }, // TODO: real email / contact link
 };

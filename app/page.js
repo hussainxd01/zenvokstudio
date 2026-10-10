@@ -5,6 +5,7 @@ import WhyWorkWithUs from "@/components/sections/WhyWorkWithUs";
 import WorkShowcase from "@/components/sections/WorkShowcase";
 import Glance from "@/components/sections/Glance";
 import Faq from "@/components/sections/Faq";
+import CtaSection from "@/components/sections/CtaSection";
 import Footer from "@/components/sections/Footer";
 
 export default function Page() {
@@ -20,6 +21,7 @@ export default function Page() {
       <WorkShowcase />
       <Glance />
       <Faq />
+      <CtaSection />
       <Footer />
     </main>
   );

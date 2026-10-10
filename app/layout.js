@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "sw
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
 
 export const metadata = {
-  title: "ZENVOK® Studio",
+  title: "ZENVOK® | Web Development & Creative Studio",
   description: "We design, develop, and optimize websites that attract customers, convert traffic, and sustain long term growth.",
 };
 
