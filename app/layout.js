@@ -1,6 +1,7 @@
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { AppProvider } from "@/components/providers/AppContext";
+import { Analytics } from '@vercel/analytics/next';
 import Loader from "@/components/layout/Loader";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import MenuPanel from "@/components/layout/MenuPanel";
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${mono.variable}`}>
       <body>
+        <Analytics />
         <AppProvider>
           <Loader />
           <SmoothScroll />
