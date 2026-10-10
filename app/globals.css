@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Suisse Intl — add the files to /public/fonts (see README there) */
+@font-face { font-family: "Suisse Intl"; font-weight: 300; font-display: swap;
+  src: local("Suisse Intl Light"), url("/fonts/SuisseIntl-Light.woff2") format("woff2"); }
+@font-face { font-family: "Suisse Intl"; font-weight: 400; font-display: swap;
+  src: local("Suisse Intl"), url("/fonts/SuisseIntl-Regular.woff2") format("woff2"); }
+@font-face { font-family: "Suisse Intl"; font-weight: 500; font-display: swap;
+  src: local("Suisse Intl Medium"), url("/fonts/SuisseIntl-Medium.woff2") format("woff2"); }
+@font-face { font-family: "Suisse Intl"; font-weight: 700; font-display: swap;
+  src: local("Suisse Intl Bold"), url("/fonts/SuisseIntl-Bold.woff2") format("woff2"); }
+
+/* Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+body { @apply bg-white font-sans text-black antialiased; overflow-x: clip; }
+
+@layer components {
+  /* 40px margin on desktop, 20px on mobile */
+  .page-x { @apply px-5 md:px-10; }
+  /* 12-col grid, 20px gutter */
+  .grid-12 { @apply grid grid-cols-12 gap-x-5; }
+}
+
+/* MaskedText words start hidden below their mask; GSAP reveals them */
+.mask-word { display: inline-block; transform: translateY(110%); will-change: transform; }
+@media (prefers-reduced-motion: reduce) { .mask-word { transform: none; } }
