@@ -1,6 +1,6 @@
 // All copy + asset paths live here. Edit content here, not in components.
 
-export const heroImage = "/images/Hero.jpg";
+export const heroImage = "/images/Hero.avif";
 
 export const navLinks = [
   { label: "Works", href: "/work" },
@@ -65,9 +65,9 @@ export const glance = {
   link: { label: "LEARN MORE", href: "#" },
   slides: [
     { type: "stat", text: "Built for brands ready to move forward.", value: "5+", label: "digital experiences" },
-    { type: "image", src: "/images/slider-1.png", lines: ["Fashion Brand", "Retail", "eCommerce", "Portfolio", "Agency"] },
+    { type: "image", src: "/images/slider-1.avif", lines: ["Fashion Brand", "Retail", "eCommerce", "Portfolio", "Agency"] },
     { type: "quote", text: quote, value: "2", label: "selected projects" },
-    { type: "image", src: "/images/slider-2.jpg", lines: ["eCommerce", "Brand Websites", "Digital Experiences"] },
+    { type: "image", src: "/images/slider-2.avif", lines: ["eCommerce", "Brand Websites", "Digital Experiences"] },
     { type: "quote", text: quote, value: "1", label: "selected projects" },
   ],
 };
