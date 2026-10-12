@@ -16,6 +16,11 @@
       "static/chunks/main-app.js",
       "static/chunks/app/service/page.js"
     ],
+    "/contact/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/contact/page.js"
+    ],
     "/work/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",

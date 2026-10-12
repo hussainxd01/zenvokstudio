@@ -19,9 +19,8 @@ export default function MenuButton() {
       onClick={() => setMenuOpen(true)}
       aria-label="Open menu"
       tabIndex={show ? 0 : -1}
-      className={`fixed right-5 top-5 z-[80] grid h-12 w-12 place-items-center rounded-full bg-black text-white transition-all duration-500 md:right-10 ${
-        show ? "scale-100 opacity-100" : "pointer-events-none scale-75 opacity-0"
-      }`}
+      className={`fixed right-5 top-5 z-[80] grid h-12 w-12 place-items-center rounded-full bg-black text-white transition-all duration-500 md:right-10 ${show ? "scale-100 opacity-100" : "pointer-events-none scale-75 opacity-0"
+        }`}
     >
       <span className="block w-[18px] space-y-[5px]">
         <span className="block h-px bg-current" />

@@ -3,10 +3,10 @@
 export const heroImage = "/images/Hero.jpg";
 
 export const navLinks = [
-  { label: "Works", href: "#works" },
-  { label: "Studio", href: "#studio" },
-  { label: "Services", href: "#services" },
-  { label: "Contact", href: "#contact" },
+  { label: "Works", href: "/work" },
+  { label: "Studio", href: "/studio" },
+  { label: "Services", href: "/service" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const menuLinks = [{ label: "Home", href: "#top" }, ...navLinks];
