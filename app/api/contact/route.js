@@ -32,7 +32,8 @@ export async function POST(request) {
     await deliver({ name, email, phone, services, message });
     return json({ ok: true });
   } catch (err) {
-    console.error("[contact]", err.message);
+    // shows the real reason in Vercel > Logs (never sent to the browser)
+    console.error("[contact] send failed:", err.message);
     return json({ error: "Could not send" }, 500);
   }
 }
