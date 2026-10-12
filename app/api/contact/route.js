@@ -31,7 +31,8 @@ export async function POST(request) {
   try {
     await deliver({ name, email, phone, services, message });
     return json({ ok: true });
-  } catch {
+  } catch (err) {
+    console.error("[contact]", err.message);
     return json({ error: "Could not send" }, 500);
   }
 }
