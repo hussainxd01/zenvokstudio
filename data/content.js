@@ -53,10 +53,10 @@ export const why = {
 };
 
 export const projects = [
-  { title: "Digital Marketing Agency -The Growth Co.", url: "#", image: "/work-1.png" },
-  { title: "Cuisine Restaurant - Elahi Luxury Dining", url: "#", image: "/work-2.png" },
-  { title: "Beyond - Ecommerce Platform", url: "#", image: "/work-3.png" },
-  { title: "Hijab House - Modest Ecommerce Platform", url: "#", image: "/work-4.png" },
+  { title: "Beyond - Ecommerce Platform", url: "#", image: "/images/work-1.avif" },
+  { title: "Digital Marketing Agency -The Growth Co.", url: "#", image: "/images/work-2.avif" },
+  { title: "Cuisine Restaurant - Elahi Luxury Dining", url: "#", image: "/images/work-3.avif" },
+  { title: "Hijab House - Modest Ecommerce Platform", url: "#", image: "/images/work-4.avif" },
 ];
 
 const quote = "“They understood the brand and made the whole experience feel effortless”";
