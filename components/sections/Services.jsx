@@ -3,16 +3,24 @@ import { services } from "@/data/content";
 
 export default function Services() {
   return (
-    <section id="services" data-theme="light" className="page-x bg-white pb-[9vw] pt-[3vw] text-center">
+    <section
+      id="services"
+      data-theme="light"
+      className="page-x bg-white pb-[9vw] pt-[3vw] text-center"
+    >
       <p className="text-small font-bold tracking-tight">{services.label}</p>
 
       <div className="mt-[4vw] md:mt-[2vw]">
         {services.rows.map((row) => (
-          <h3 key={row.before + row.after} className="group text-service whitespace-nowrap font-medium">
+          <a
+            key={row.before + row.after}
+            href="/contact"
+            className="group block text-service whitespace-nowrap font-medium"
+          >
             {row.before}
             <Capsule {...row.capsule} />
             {row.after}
-          </h3>
+          </a>
         ))}
       </div>
 

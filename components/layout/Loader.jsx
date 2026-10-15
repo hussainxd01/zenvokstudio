@@ -23,7 +23,13 @@ export default function Loader() {
         .fromTo(
           "[data-loader-word]",
           { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, stagger: 0.15, duration: 0.6, ease: "power2.out" }
+          {
+            opacity: 1,
+            y: 0,
+            stagger: 0.15,
+            duration: 0.6,
+            ease: "power2.out",
+          },
         )
         // hero + masked text start as the loader slides down
         .call(() => setReady(true))
@@ -36,9 +42,9 @@ export default function Loader() {
   return (
     <div
       ref={rootRef}
-      className="pointer-events-none fixed inset-0 z-[99999] flex items-center justify-center bg-night px-4"
+      className="pointer-events-none fixed inset-0 z-[99999] flex items-center justify-center bg-black px-4"
     >
-      <div className="flex flex-wrap justify-center gap-2 text-center text-lg font-medium tracking-tight text-white sm:text-3xl md:text-4xl">
+      <div className="flex flex-wrap justify-center gap-x-1 gap-y-1 text-center text-lg font-normal tracking-tight text-white sm:text-3xl md:text-4xl">
         {WORDS.map((w) => (
           <span key={w} data-loader-word style={{ opacity: 0 }}>
             {w}
