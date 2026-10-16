@@ -11,6 +11,7 @@ export default function ImageWithFallback({
   className = "",
   placeholder = "bg-gradient-to-br from-neutral-300 to-neutral-500",
   label,
+  fetchPriority = priority ? "high" : "auto",
   priority = false,
 }) {
   const [status, setStatus] = useState("loading"); // loading | loaded | error
@@ -39,12 +40,12 @@ export default function ImageWithFallback({
           src={src}
           alt={alt}
           draggable={false}
+          fetchPriority={fetchPriority}
           loading={priority ? "eager" : "lazy"}
           onLoad={() => setStatus("loaded")}
           onError={() => setStatus("error")}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
-            status === "loaded" ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${status === "loaded" ? "opacity-100" : "opacity-0"
+            }`}
         />
       )}
     </div>
