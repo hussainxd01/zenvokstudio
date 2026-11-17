@@ -124,7 +124,7 @@ export const glance = {
       type: "quote",
       text: "They understood what we needed and made the whole process smooth.",
       value: "01",
-      label: "client testimonial",
+      label: "Elahi Luxury Dining - Owner",
     },
     {
       type: "image",
@@ -135,7 +135,7 @@ export const glance = {
       type: "quote",
       text: "Really happy with the website. It looks clean and professional.",
       value: "02",
-      label: "client testimonial",
+      label: "Hijab House - Owner Maryam",
     },
   ],
 };

@@ -37,7 +37,7 @@ export default function Hero() {
     return () => ctx.revert();
   }, []);
 
-const go = useNav();
+  const go = useNav();
 
 
   return (
@@ -48,6 +48,7 @@ const go = useNav();
           src={heroImage}
           alt=""
           priority
+          fetchPriority="high"
           label="Hero.png"
           className="h-full w-full"
           placeholder="bg-gradient-to-b from-[#3b4452] via-[#6d5a49] to-[#4a3a2c]"

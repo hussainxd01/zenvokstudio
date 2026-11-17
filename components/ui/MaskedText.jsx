@@ -1,13 +1,17 @@
 "use client";
-import { Fragment, useEffect, useMemo, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
-import { useApp } from "@/components/providers/AppContext";
+import { Fragment, memo, useEffect, useMemo, useRef } from "react";
+import { gsap } from "@/lib/gsap";
+import { useReady } from "@/components/providers/AppContext";
 
 /**
  * Word-by-word masked reveal.
  *  - `\n` in text = forced line break (desktop only; wraps naturally on mobile)
  *  - runs of 2+ spaces are preserved on desktop (used for the Studio copy)
  *  - when="scroll" plays once when in view; when="intro" waits for the loader
+ *
+ * Performance: one shared IntersectionObserver (no per-element scroll listeners),
+ * no permanent will-change, and the words are left with `transform: none` once played.
+ * Self-contained: the hidden state is inline, so no CSS rules are needed in globals.css.
  */
 function tokenize(text) {
   return text.split(/(\n| {2,})/).flatMap((part) => {
@@ -18,47 +22,75 @@ function tokenize(text) {
   });
 }
 
-export default function MaskedText({
-  text,
-  as: Tag = "p",
-  className = "",
-  when = "scroll",
-  delay = 0,
-  stagger = 0.045,
-  duration = 0.85,
-  start = "top 90%",
-}) {
+/* ---- one observer for every MaskedText on the page ---- */
+let io = null;
+const callbacks = new WeakMap();
+
+function watch(el, onEnter) {
+  if (!io) {
+    io = new IntersectionObserver(
+      (entries) => {
+        for (const en of entries) {
+          // in view, or already scrolled past (e.g. page reloaded further down)
+          if (en.isIntersecting || en.boundingClientRect.top < 0) {
+            const cb = callbacks.get(en.target);
+            if (!cb) continue;
+            callbacks.delete(en.target);
+            io.unobserve(en.target);
+            cb();
+          }
+        }
+      },
+      { rootMargin: "0px 0px -10% 0px" } // fire when the top is ~90% down the viewport
+    );
+  }
+  callbacks.set(el, onEnter);
+  io.observe(el);
+  return () => {
+    callbacks.delete(el);
+    io.unobserve(el);
+  };
+}
+
+function MaskedText({ text, as: Tag = "p", className = "", when = "scroll", delay = 0, stagger = 0.045, duration = 0.85 }) {
   const ref = useRef(null);
-  const { ready } = useApp();
+  const played = useRef(false);
+  const ready = useReady();
   const tokens = useMemo(() => tokenize(text), [text]);
   const waiting = when === "intro" && !ready;
 
   useEffect(() => {
     const el = ref.current;
-    if (!el || waiting) return;
+    if (!el || waiting || played.current) return;
     const words = el.querySelectorAll(".mask-word");
+
+    // final state: visible, no layer. Inline `none` also beats any stale CSS rule.
+    const finish = () => {
+      played.current = true;
+      gsap.set(words, { clearProps: "transform,willChange" });
+      words.forEach((w) => (w.style.transform = "none"));
+    };
+
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      gsap.set(words, { yPercent: 0 });
+      finish();
       return;
     }
-    const ctx = gsap.context(() => {
-      // y: 0 clears the px value GSAP reads from the CSS class (translateY(110%)),
-      // otherwise words end up offset and stay hidden behind the mask
-      gsap.set(words, { yPercent: 110, y: 0 });
-      const play = () =>
-        gsap.to(words, {
-          yPercent: 0,
-          duration,
-          delay,
-          stagger,
-          ease: "power3.out",
-          onComplete: () => gsap.set(words, { willChange: "auto" }),
-        });
-      if (when === "intro") play();
-      else ScrollTrigger.create({ trigger: el, start, once: true, onEnter: play });
-    }, el);
-    return () => ctx.revert();
-  }, [waiting, when, delay, stagger, duration, start, text]);
+
+    let tween;
+    const play = () => {
+      tween = gsap.fromTo(
+        words,
+        { yPercent: 110, y: 0 },
+        { yPercent: 0, y: 0, duration, delay, stagger, ease: "power3.out", onComplete: finish }
+      );
+    };
+
+    const stop = when === "intro" ? (play(), () => { }) : watch(el, play);
+    return () => {
+      stop();
+      tween?.kill();
+    };
+  }, [waiting, when, delay, stagger, duration, text]);
 
   return (
     <Tag ref={ref} className={className}>
@@ -66,7 +98,9 @@ export default function MaskedText({
         if (tk.t === "word")
           return (
             <span key={i} className="-my-[0.1em] inline-block overflow-hidden py-[0.1em] align-top">
-              <span className="mask-word">{tk.v}</span>
+              <span className="mask-word inline-block" style={{ transform: "translateY(110%)" }}>
+                {tk.v}
+              </span>
             </span>
           );
         if (tk.t === "sp") return <Fragment key={i}> </Fragment>;
@@ -87,3 +121,5 @@ export default function MaskedText({
     </Tag>
   );
 }
+
+export default memo(MaskedText);

@@ -2,83 +2,52 @@ import MaskedText from "@/components/ui/MaskedText";
 import { cta } from "@/data/content";
 import Link from "next/link";
 
-const ACCENT = "#ff6a57"; // brightened version of the site's reds; change here only
-
-function ArrowIcon() {
-  return (
-    <svg width="100%" height="100%" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
-      <path d="M2 12L12 2M4 2h8v8" />
-    </svg>
-  );
-}
-
-/** "Let's talk" link: text rolls, arrow flies out and back in, accent underline draws. */
-function TalkButton({ label, href }) {
+/** "Let's talk" pill: label rolls up, arrow flies out and back in, pill grows slightly. */
+function TalkButton({ label }) {
   const ease = "transition-transform duration-500 ease-[cubic-bezier(0.7,0,0.2,1)]";
   return (
     <Link
       href={"/contact"}
-      className="group relative inline-flex items-center gap-3 pb-2.5 text-[clamp(12px,0.95vw,16px)] uppercase leading-none tracking-[0.12em] text-white"
+      className="group inline-flex items-center gap-3 rounded-full bg-black px-[1.4em] py-[0.9em] text-[clamp(12px,0.95vw,16px)] uppercase leading-none tracking-[0.12em] text-white transition-transform duration-300 hover:scale-105"
     >
       {/* rolling label */}
       <span className="relative block h-[1.1em] overflow-hidden">
         <span className={`block ${ease} group-hover:-translate-y-full`}>{label}</span>
-        <span className={`absolute left-0 top-full block ${ease} group-hover:-translate-y-full`} style={{ color: ACCENT }} aria-hidden="true">
+        <span className={`absolute left-0 top-full block ${ease} group-hover:-translate-y-full`} aria-hidden="true">
           {label}
         </span>
       </span>
 
       {/* arrow swap */}
-      <span className="relative block h-[1.1em] w-[1.1em] overflow-hidden">
-        <span className={`absolute inset-0 ${ease} group-hover:-translate-y-full group-hover:translate-x-full`}>
-          <ArrowIcon />
-        </span>
-        <span
-          className={`absolute inset-0 -translate-x-full translate-y-full ${ease} group-hover:translate-x-0 group-hover:translate-y-0`}
-          style={{ color: ACCENT }}
-          aria-hidden="true"
-        >
-          <ArrowIcon />
-        </span>
+      <span className="relative block h-[1em] w-[1em] overflow-hidden">
+        <svg className={`absolute inset-0 ${ease} group-hover:-translate-y-full group-hover:translate-x-full`} viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+          <path d="M2 12L12 2M4 2h8v8" />
+        </svg>
+        <svg className={`absolute inset-0 -translate-x-full translate-y-full ${ease} group-hover:translate-x-0 group-hover:translate-y-0`} viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+          <path d="M2 12L12 2M4 2h8v8" />
+        </svg>
       </span>
-
-      {/* underline */}
-      <span className="absolute bottom-0 left-0 h-px w-full bg-white/80" />
-      <span
-        className="absolute bottom-0 left-0 h-px w-full origin-left scale-x-0 transition-transform duration-700 ease-[cubic-bezier(0.7,0,0.2,1)] group-hover:scale-x-100"
-        style={{ backgroundColor: ACCENT }}
-      />
     </Link>
   );
 }
 
+/** Same language as "Why work with us": white, bold uppercase title, 3/3/6 grid, black pill. */
 export default function CtaSection() {
   const { lines } = cta;
   return (
-    <section
-      data-theme="dark"
-      className="page-x relative flex min-h-[78svh] flex-col justify-between overflow-hidden bg-[#150808] py-[14vw] text-white md:min-h-[34vw] md:py-[5.5vw]"
-    >
-      <div className="relative">
-        <h2 className="text-[clamp(44px,6.2vw,130px)] font-normal leading-[1.02] tracking-[-0.045em]">
-          <MaskedText as="span" text={lines.first} className="block" />
-          <span className="block">
-            <span style={{ color: ACCENT }}>
-              <MaskedText as="span" text={lines.accent} delay={0.1} className="inline" />
-            </span>{" "}
-            <MaskedText as="span" text={lines.rest} delay={0.2} className="inline" />
-          </span>
-        </h2>
-        <MaskedText
-          text={cta.sub}
-          delay={0.35}
-          className="mt-[5vw] text-[clamp(18px,2vw,40px)] font-light leading-[1.2] tracking-[-0.02em] md:mt-[1.6vw]"
-        />
-      </div>
+    <section data-theme="light" className="page-x bg-white pb-[16vw] pt-[16vw] md:pb-[7vw] md:pt-[9vw]">
+      <MaskedText
+        as="h2"
+        text={`${lines.first} ${lines.accent}\n${lines.rest}`}
+        className="text-[clamp(40px,6.2vw,130px)] font-bold uppercase leading-[0.95] tracking-[-0.05em]"
+      />
 
-      <div className="relative mt-[16vw] flex flex-col gap-8 md:mt-[3vw] md:flex-row md:items-end md:justify-between">
-        <MaskedText as="p" text={cta.note} delay={0.5} className="max-w-[28em] text-[clamp(12px,0.95vw,16px)] tracking-[0.04em] text-white/70" />
-        <TalkButton {...cta.button} />
+      <div className="grid-12 mt-[10vw] gap-y-8 md:mt-[5vw]">
+        <MaskedText text={cta.sub} delay={0.2} className="text-body col-span-12 md:col-span-3 md:whitespace-nowrap" />
+        <MaskedText text={cta.note} delay={0.3} className="col-span-12 text-small text-black/60 md:col-span-3" />
+        <div className="col-span-12 flex md:col-span-6 md:items-end md:justify-end">
+          <TalkButton {...cta.button} />
+        </div>
       </div>
     </section>
   );
