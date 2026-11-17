@@ -11,8 +11,8 @@ export default function ImageWithFallback({
   className = "",
   placeholder = "bg-gradient-to-br from-neutral-300 to-neutral-500",
   label,
-  fetchPriority = priority ? "high" : "auto",
   priority = false,
+  fetchPriority = priority ? "high" : "auto",
 }) {
   const [status, setStatus] = useState("loading"); // loading | loaded | error
   const imgRef = useRef(null);
