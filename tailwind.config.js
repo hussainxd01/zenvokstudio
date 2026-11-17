@@ -3,8 +3,7 @@ module.exports = {
   content: ["./app/**/*.{js,jsx}", "./components/**/*.{js,jsx}"],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['"Suisse Intl"', '"Helvetica Neue"', "Arial", "sans-serif"],
+      fontFamily: {Inter"', '"Helvetica Neue"', "Arial", "sans-serif"],
         inter: ["var(--font-inter)", "Inter", "Arial", "sans-serif"],
         mono: ["var(--font-mono)", '"JetBrains Mono"', "ui-monospace", "monospace"],
       },
